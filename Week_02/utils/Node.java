@@ -6,7 +6,7 @@ import java.util.List;
  * User: Yinghao
  * Date: 2021/1/31
  * Time: 12:29 PM
- * Desc: Binary Tree Node
+ * Desc: N-ary Tree Node
  */
 public class Node {
     public int val;
