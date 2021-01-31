@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  *  N叉树的前序遍历
  *  Leetcode链接：https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/description/
  *
+ *  解题思路：
  *  1. 递归
  *  @see #preorder_1(Node)
  *  

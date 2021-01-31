@@ -12,9 +12,18 @@ import java.util.PriorityQueue;
  *
  *  解题思路：
  *  1. priority queue 大顶堆
- *  @see #
+ *  @see #maxSlidingWindow(int[], int) 
  */
 public class MaxSlidingWindow {
+
+    /**
+     * 时间复杂度：O(NlogN)
+     * 空间复杂度：O(N)
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums.length == 0 || k == 0) {
             return new int[0];
