@@ -1,27 +1,25 @@
 package homework;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import utils.Node;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * User: Yinghao
  * Date: 2021/1/31
- * Time: 12:25 PM
+ * Time: 2:02 PM
  * Desc:
- *  N叉树的后序遍历
- *  Leetcode链接：https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/
+ *  N叉树的前序遍历
+ *  Leetcode链接：https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/description/
  *
- *  解题思路：
  *  1. 递归
- *  @see #postorder_1(Node)
- *
+ *  @see #preorder_1(Node)
+ *  
  *  2. 栈
- *  @see #postorder_2(Node) 
+ *  @see #preorder_2(Node) 
  */
-
-public class Postorder {
+public class Preorder {
 
     /**
      * 时间复杂度：O(N)
@@ -30,7 +28,7 @@ public class Postorder {
      * @param root
      * @return
      */
-    public List<Integer> postorder_1(Node root) {
+    public List<Integer> preorder_1(Node root) {
         List<Integer> res = new ArrayList<>();
         helper(root, res);
         return res;
@@ -41,22 +39,20 @@ public class Postorder {
             return;
         }
 
+        res.add(root.val);
         for (Node node : root.children) {
             helper(node, res);
         }
-        res.add(root.val);
     }
 
     /**
      * 时间复杂度：O(N)
      * 空间复杂度：O(N)
-     * 特别注意，我们最后需要反转结果。后序遍历的顺序先走完所有孩子再走根节点，但是在实现中，
-     * 栈每次弹出来的结果都是最先被加入到结果列表里的，即先根后孩子，所以最后需要将其反转。
      *
      * @param root
      * @return
      */
-    public List<Integer> postorder_2(Node root) {
+    public List<Integer> preorder_2(Node root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
 
@@ -64,15 +60,15 @@ public class Postorder {
         stack.push(root);
         while (!stack.isEmpty()) {
             root = stack.pop();
+            res.add(root.val);
+            // 此处需要注意，按照前序遍历的定义-先根后孩子，我们应该将root结点的孩子从后往前依次压入栈，
+            // 这样才能让最后去访问的孩子在栈的底部，而最先访问的孩子在栈的头部
+            Collections.reverse(root.children);
             for (Node node : root.children) {
                 stack.push(node);
             }
-            res.add(root.val);
         }
 
-        Collections.reverse(res);
         return res;
     }
-
-
 }
